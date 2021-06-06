@@ -2,22 +2,20 @@ package br.com.queiroz.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-
 @Entity
-@Table(name = "categoria")
+@Table(name = "pessoa")
 @Data
-public class Categoria implements Serializable  {
+public class Pessoa implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -26,14 +24,19 @@ public class Categoria implements Serializable  {
 	private Long codigo;
 	
 	@NotNull
-	@Size(min = 3, max = 50)
 	private String nome;
+	
+	@NotNull
+	private Boolean ativo;
+	
+	@Embedded
+	private Endereco endereco;
 
-	public Categoria(@NotBlank(message = "O campo nome não pode ser vazio.") @Size(min = 3, max = 50) String nome) {
+	public Pessoa(@NotNull String nome, @NotNull Boolean ativo, Endereco endereco) {
+		super();
 		this.nome = nome;
-	}
-
-	public Categoria() {
+		this.ativo = ativo;
+		this.endereco = endereco;
 	}
 	
 }
