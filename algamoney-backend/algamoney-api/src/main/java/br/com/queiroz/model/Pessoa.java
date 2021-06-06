@@ -38,5 +38,8 @@ public class Pessoa implements Serializable  {
 		this.ativo = ativo;
 		this.endereco = endereco;
 	}
+
+	public Pessoa() {
+	}
 	
 }
