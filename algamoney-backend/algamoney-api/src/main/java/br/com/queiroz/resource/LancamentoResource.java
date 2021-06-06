@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,8 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.queiroz.event.RecursoCriadoEvent;
 import br.com.queiroz.exceptionhandler.AlgamoneyExceptionHandler.Erro;
 import br.com.queiroz.model.Lancamento;
-import br.com.queiroz.model.Pessoa;
 import br.com.queiroz.repository.LancamentoRepository;
+import br.com.queiroz.repository.filter.LancamentoFilter;
 import br.com.queiroz.service.LancamentoService;
 import br.com.queiroz.service.exception.PessoaInexistenteOuInativaException;
 
@@ -48,9 +50,15 @@ public class LancamentoResource {
 	@Autowired
 	private MessageSource messageSource;
 	
+//	@GetMapping
+//	public List<Lancamento> listar() {
+//		return lancamentoRepository.findAll();
+//	}
+	
+	//http://localhost:8080/lancamentos?dataVencimentoDe=2018-01-01&dataVencimentoAte=2018-03-28&descricao=salário
 	@GetMapping
-	public List<Lancamento> listar() {
-		return lancamentoRepository.findAll();
+	public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable pageable) {
+		return lancamentoRepository.filtrar(lancamentoFilter, pageable);
 	}
 	
 	@GetMapping("/{codigo}")
@@ -72,8 +80,7 @@ public class LancamentoResource {
 	public ResponseEntity<Object> handlePessoaInexistenteOuInativaException(PessoaInexistenteOuInativaException ex) {
 		String mensagemUsuario = messageSource.getMessage("pessoa.inexistente-ou-inativa", null, LocaleContextHolder.getLocale());
 		String mensagemDesenvolvedor = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-		
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));	
 		return ResponseEntity.badRequest().body(erros);
 	}
 	
