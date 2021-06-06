@@ -35,16 +35,6 @@ public class Pessoa implements Serializable  {
 	@Embedded
 	private Endereco endereco;
 
-	public Pessoa(@NotNull String nome, @NotNull Boolean ativo, Endereco endereco) {
-		super();
-		this.nome = nome;
-		this.ativo = ativo;
-		this.endereco = endereco;
-	}
-
-	public Pessoa() {
-	}
-	
 	// Evita que o hibertante e o jackson leiam como propriedade
 	@JsonIgnore
 	@Transient

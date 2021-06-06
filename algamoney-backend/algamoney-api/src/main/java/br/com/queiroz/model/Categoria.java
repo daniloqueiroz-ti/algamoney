@@ -29,11 +29,4 @@ public class Categoria implements Serializable  {
 	@Size(min = 3, max = 50)
 	private String nome;
 
-	public Categoria(@NotBlank(message = "O campo nome não pode ser vazio.") @Size(min = 3, max = 50) String nome) {
-		this.nome = nome;
-	}
-
-	public Categoria() {
-	}
-	
 }

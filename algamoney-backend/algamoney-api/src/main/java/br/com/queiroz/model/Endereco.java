@@ -14,16 +14,4 @@ public class Endereco {
 	private String bairro;
 	private String cep;
 	
-	public Endereco(String logradouro, String numero, String complemento, String bairro, String cep) {
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.cep = cep;
-	}
-	
-	public Endereco() {
-		
-	}
-	
 }
