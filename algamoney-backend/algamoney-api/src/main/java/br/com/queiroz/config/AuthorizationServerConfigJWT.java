@@ -26,7 +26,7 @@ public class AuthorizationServerConfigJWT extends AuthorizationServerConfigurerA
 				.secret("$2a$10$4CvdsdqhNu/A1ERtlyqOYeSbwnRbL7xCbPclZ7k3o6HvWw0oU3v1u") // @ngul@r0 
 				.scopes("read", "write")
 				.authorizedGrantTypes("password", "refresh_token")
-				.accessTokenValiditySeconds(20)
+				.accessTokenValiditySeconds(30)
 				.refreshTokenValiditySeconds(3600 * 24);
 	}
 	
