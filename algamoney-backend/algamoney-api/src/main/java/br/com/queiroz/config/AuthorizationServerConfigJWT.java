@@ -25,8 +25,9 @@ public class AuthorizationServerConfigJWT extends AuthorizationServerConfigurerA
 				.withClient("angular")
 				.secret("$2a$10$4CvdsdqhNu/A1ERtlyqOYeSbwnRbL7xCbPclZ7k3o6HvWw0oU3v1u") // @ngul@r0 
 				.scopes("read", "write")
-				.authorizedGrantTypes("password")
-				.accessTokenValiditySeconds(1800);
+				.authorizedGrantTypes("password", "refresh_token")
+				.accessTokenValiditySeconds(20)
+				.refreshTokenValiditySeconds(3600 * 24);
 	}
 	
 	@Override
@@ -34,6 +35,7 @@ public class AuthorizationServerConfigJWT extends AuthorizationServerConfigurerA
 		endpoints
 			.tokenStore(tokenStore())
 			.accessTokenConverter(accessTokenConverter())
+			.reuseRefreshTokens(false)
 			.authenticationManager(authenticationManager);
 	}
 	
