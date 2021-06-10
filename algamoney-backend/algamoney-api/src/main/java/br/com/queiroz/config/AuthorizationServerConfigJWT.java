@@ -31,6 +31,15 @@ public class AuthorizationServerConfigJWT extends AuthorizationServerConfigurerA
 				.scopes("read", "write")
 				.authorizedGrantTypes("password", "refresh_token")
 				.accessTokenValiditySeconds(30)
+				.refreshTokenValiditySeconds(3600 * 24)
+				
+				.and()
+				
+				.withClient("mobile")
+				.secret("$2a$10$KJRZ.d9lgifvJU420wX7Oeb2sA3mgnGjv9iyUWNqcN1RxjXnKfcKK") // m0b1l30
+				.scopes("read")
+				.authorizedGrantTypes("password", "refresh_token") // m0b1l30
+				.accessTokenValiditySeconds(1800)
 				.refreshTokenValiditySeconds(3600 * 24);
 	}
 	
