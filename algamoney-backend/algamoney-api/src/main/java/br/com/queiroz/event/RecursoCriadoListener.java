@@ -1,4 +1,4 @@
-package br.com.queiroz.event.listener;
+package br.com.queiroz.event;
 
 import java.net.URI;
 
@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import br.com.queiroz.event.RecursoCriadoEvent;
 
 //Responsavel por ouvir o evento
 @Component

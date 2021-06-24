@@ -1,4 +1,4 @@
-package br.com.queiroz.resource;
+package br.com.queiroz.config.resource;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

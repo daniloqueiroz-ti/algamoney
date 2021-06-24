@@ -1,4 +1,4 @@
-package br.com.queiroz.config.token;
+package br.com.queiroz.config.service;
 
 import java.io.IOException;
 import java.util.Map;

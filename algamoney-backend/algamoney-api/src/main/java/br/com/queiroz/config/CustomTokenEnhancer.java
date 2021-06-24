@@ -1,4 +1,4 @@
-package br.com.queiroz.config.token;
+package br.com.queiroz.config;
 
 import java.util.HashMap;
 import java.util.Map;
