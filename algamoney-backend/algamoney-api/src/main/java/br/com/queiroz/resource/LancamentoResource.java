@@ -52,10 +52,10 @@ public class LancamentoResource {
 	@Autowired
 	private MessageSource messageSource;
 	
-//	@GetMapping
-//	public List<Lancamento> listar() {
-//		return lancamentoRepository.findAll();
-//	}
+	@GetMapping("/all")
+	public List<Lancamento> listar() {
+		return lancamentoRepository.findAll();
+	}
 	
 	//http://localhost:8080/lancamentos?dataVencimentoDe=2018-01-01&dataVencimentoAte=2018-03-28&descricao=salário
 	@GetMapping
@@ -86,15 +86,7 @@ public class LancamentoResource {
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(lancamentoSalvo);
 	}
-	
-	@ExceptionHandler({ PessoaInexistenteOuInativaException.class })
-	public ResponseEntity<Object> handlePessoaInexistenteOuInativaException(PessoaInexistenteOuInativaException ex) {
-		String mensagemUsuario = messageSource.getMessage("pessoa.inexistente-ou-inativa", null, LocaleContextHolder.getLocale());
-		String mensagemDesenvolvedor = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));	
-		return ResponseEntity.badRequest().body(erros);
-	}
-	
+
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('ROLE_REMOVER_LANCAMENTO') and #oauth2.hasScope('write')")
@@ -112,5 +104,14 @@ public class LancamentoResource {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+	@ExceptionHandler({ PessoaInexistenteOuInativaException.class })
+	public ResponseEntity<Object> handlePessoaInexistenteOuInativaException(PessoaInexistenteOuInativaException ex) {
+		String mensagemUsuario = messageSource.getMessage("pessoa.inexistente-ou-inativa", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));	
+		return ResponseEntity.badRequest().body(erros);
+	}
+	
 	
 }

@@ -33,6 +33,7 @@ public class LancamentoService {
 		if (!lancamento.getPessoa().equals(lancamentoSalvo.getPessoa())) {
 			validarPessoa(lancamento);
 		}
+		//para copiar as propriedades que vem de lancamento exceto o codigo
 		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "codigo");
 		return lancamentoRepository.save(lancamentoSalvo);
 	}
