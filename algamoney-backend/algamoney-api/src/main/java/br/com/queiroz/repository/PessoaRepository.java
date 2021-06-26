@@ -11,5 +11,6 @@ import br.com.queiroz.model.Pessoa;
 public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
 
 	public Page<Pessoa> findByNomeContaining(String nome, Pageable pageable);
+	
 }
 
